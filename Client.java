@@ -151,22 +151,21 @@ public class Client extends Thread{
      * @return 
      * @param
      */
-     public void sendTransactions()
-     {
+     public void sendTransactions() {
          int i = 0;     /* index of transaction array */
-         
-         while (i < getNumberOfTransactions())
-         {  
-            while( objNetwork.getInBufferStatus().equals("full") );
-            Thread.yield();      }                                /* Alternatively, busy-wait until the network input buffer is available */
-                                             	
-            transaction[i].setTransactionStatus("sent");   /* Set current transaction status */
-           
-            //System.out.println("\n DEBUG : Client.sendTransactions() - sending transaction on account " + transaction[i].getAccountNumber());
-            
-            objNetwork.send(transaction[i]);                            /* Transmit current transaction */
-            i++;
 
+         while (i < getNumberOfTransactions()) {
+             while (objNetwork.getInBufferStatus().equals("full")){
+             Thread.yield();
+         }                                /* Alternatively, busy-wait until the network input buffer is available */
+
+         transaction[i].setTransactionStatus("sent");   /* Set current transaction status */
+
+         //System.out.println("\n DEBUG : Client.sendTransactions() - sending transaction on account " + transaction[i].getAccountNumber());
+
+         objNetwork.send(transaction[i]);                            /* Transmit current transaction */
+         i++;
+     }
          
     }
          
