@@ -25,5 +25,9 @@ public class Driver {
         objNetwork.start();
         Server objServer = new Server();        
         /* Complete here the code for the main method ...*/
+        Client objClient1 = new Client("sending");
+        objClient1.start();
+        Client objClient2 = new Client("receiving");
+        objClient2.start();
     }
 }
