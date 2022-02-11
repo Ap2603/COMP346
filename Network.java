@@ -43,7 +43,7 @@ public class Network extends Thread{
             clientConnectionStatus = "idle";
             serverConnectionStatus = "idle";
             portID = 0;
-            maxNbPackets = 10;
+            maxNbPackets = 20;
             inComingPacket = new Transactions[maxNbPackets];
             outGoingPacket = new Transactions[maxNbPackets];
             for (i=0; i < maxNbPackets; i++)
@@ -374,7 +374,7 @@ public class Network extends Thread{
             {	
             	setInBufferStatus("full");
             
-            	System.out.println("\n DEBUG : Network.send() - inComingBuffer status " + getInBufferStatus());
+            	//System.out.println("\n DEBUG : Network.send() - inComingBuffer status " + getInBufferStatus());
             }
             else
             	setInBufferStatus("normal");
@@ -471,7 +471,7 @@ public class Network extends Thread{
             {
                 setInBufferStatus("empty");
                 
-                System.out.println("\n DEBUG : Network.transferIn() - inComingBuffer status " + getInBufferStatus());
+                //System.out.println("\n DEBUG : Network.transferIn() - inComingBuffer status " + getInBufferStatus());
             }
             else
                 setInBufferStatus("normal");
@@ -565,6 +565,7 @@ public class Network extends Thread{
             }
 
             if (getClientConnectionStatus().equals("disconnected") && getServerConnectionStatus().equals("disconnected")) {
+                System.out.println("\nTerminating network thread - Client disconnected Server disconnected");
                 break;
             }
         }
